@@ -1,7 +1,13 @@
+/*структура бинарного дерево отрезков, которая генерирует
+дерево после ввода начала и конца отрезка, а также исчет 
+количество вхождений заданного элемента и считает сумму на 
+определенном интервале*/
+
 #include <iostream>
 
 struct Node {
-    int min_key, max_key, value;
+    int min_key, max_key;
+    int value;
     Node* left = nullptr;
     Node* right = nullptr;
 };
@@ -22,7 +28,7 @@ Node* build_tree(Node* node, int min_key, int max_key) {
     }
     else {
         if (node->max_key - node->min_key == 1) {
-            node->value = node->min_key + node->max_key; 
+            node->value = node->max_key; 
             return node;
         }
         else {
@@ -31,7 +37,7 @@ Node* build_tree(Node* node, int min_key, int max_key) {
             else node->left = build_tree(new_node(min_key, past), min_key, past);
             if (past == max_key)  return nullptr;
             else node->right = build_tree(new_node(past, max_key), past, max_key);
-            node->value = (node->left ? node->left->value - node->left->min_key : 0) + (node->right ? node->right->value - node->right->min_key : 0);
+            node->value = (node->left ? node->left->value : 0) + (node->right ? node->right->value : 0);
         }
     }
     return node;
@@ -92,7 +98,7 @@ int main() {
     std::cout << "____________________________________________" << std::endl;
     std::cout << "Please enter the beginning and end of the segment: ";
     std::cin >> first >> last;
-    std::cout << "The summ of the segment: " << summ(root, first, last) << std::endl;
+    std::cout << "The summ of the segment: " << summ(root, first, last) + first << std::endl;
     std::cout << "___________________________________________";
     return 0;
 }
