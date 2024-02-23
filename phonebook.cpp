@@ -40,7 +40,7 @@ Node* name_search(Node* root, std::string name) {
     if (root == nullptr || root->name == name) {
         return root;
     }
-    if (name < root->name) {
+    else if (name < root->name) {
         return name_search(root->left, name);
     } 
     else if (name > root->name) {
