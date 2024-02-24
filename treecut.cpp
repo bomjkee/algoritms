@@ -50,7 +50,7 @@ void print_tree_util (Node* root, int space) {
     print_tree_util(root->right, space);
     std::cout << std::endl;
     for(int i = count_space; i < space; i++) std::cout << ' ';
-    std::cout << '(' << root->min_key << ", " << root->max_key << ')' << std::endl;
+    std::cout << '[' << root->min_key << ", " << root->max_key << ']' << std::endl;
     print_tree_util(root->left, space);
 }
 
